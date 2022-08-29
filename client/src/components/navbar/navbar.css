@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "cotta";
+  src: url("../../assets/fonts/cotta.otf") type("otf");
+  font-weight: 400;
+}
+.navbarWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 50px;
+  margin: 10px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.19);
+}
+.navbarWrapper .logo {
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+.navbarWrapper .logo img {
+  width: 150px;
+  transition: all 0.3s ease-in-out;
+}
+.navbarWrapper .logo img:hover {
+  cursor: pointer;
+  width: 175px;
+}
+.navbarWrapper .loginButton {
+  background: #000;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 10px 10px;
+  font-family: "cotta";
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.navbarWrapper .loginButton:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+}
+.navbarWrapper .loginButton a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navbarWrapper {
+    padding: 15px;
+  }
+  .navbarWrapper .logo img {
+    width: 130px;
+  }
+  .navbarWrapper .loginButton {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .navbarWrapper {
+    padding: 15px;
+  }
+  .navbarWrapper .logo img {
+    width: 100px;
+  }
+  .navbarWrapper .logo img:hover {
+    cursor: pointer;
+    width: 100px;
+  }
+  .navbarWrapper .loginButton {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .navbarWrapper {
+    padding: 10px;
+    margin: 10px 0 0 0;
+  }
+  .navbarWrapper .logo img {
+    width: 100px;
+  }
+  .navbarWrapper .logo img:hover {
+    cursor: pointer;
+    width: 80px;
+  }
+  .navbarWrapper .loginButton {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=navbar.css.map */
