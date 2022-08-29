@@ -4,15 +4,16 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 
 //creating routes for scalabe architechure
-const recipieRoute = require('./routes/recipie');
-const userRoute = require('./routes/user');
+const recipieRoute = require('./api/routes/recipe');
+const userRoute = require('./api/routes/user');
 
 //mongoose connection request
-mongoose.connect(``);
+mongoose.connect(`mongodb+srv://savourly:${process.env.MONGO_PASS}@savourly.sqa6rxf.mongodb.net/?retryWrites=true&w=majority`);
 
 //using bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
 
 //handling CORS errors by adding headers
 app.use((req,res,next) =>{
@@ -26,7 +27,7 @@ app.use((req,res,next) =>{
 });
 
 //forwarding routes 
-app.use('/recipie', recipieRoute);
+app.use('/recipe', recipieRoute);
 app.use('/user', userRoute);
 
 //handling errors 404 and 500 errors and sending a response
