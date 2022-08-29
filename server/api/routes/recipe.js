@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
         cb(null, './uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
     },
 });
 
@@ -50,11 +50,11 @@ router.get('/', (req, res, next) => {
                         image: doc.image,
                     }
                 })
-            }).catch(err => {
-                console.log(err);
-                res.status(500).json({
-                    error: err
-                });
+            });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
             });
         });
 });
@@ -66,7 +66,8 @@ router.get('/:recipeName', (req, res, next) => {
         .then(doc => {
             console.log(doc);
             if (doc) {
-                //if recipe is found, return the recipe metadata
+                console.log(doc);
+                // if recipe is found, return the recipe metadata
                 res.status(200).json({
                     message: "Recipe found by name",
                     recipe: doc.map(doc => {
@@ -114,7 +115,7 @@ router.get('/:recipeName', (req, res, next) => {
 });
 
 //get request for recipes by a user
-router.get('/:userName', checkAuth, (req, res, next) => {
+router.get('/user/:userName', checkAuth, (req, res, next) => {
     //searhcing for the recipe in the database
     Recipe.find({ author: req.params.userName }).exec()
         .then(doc => {
@@ -141,7 +142,7 @@ router.get('/:userName', checkAuth, (req, res, next) => {
 });
 
 //get request for a specific recipe by a user
-router.get('/:userName/:recipeName', checkAuth, (req, res, next) => {
+router.get('/user/:userName/:recipeName', checkAuth, (req, res, next) => {
     //searhcing for the recipe in the database
     Recipe.find({ author: req.params.userName, title: req.params.recipeName }).exec()
         .then(doc => {
@@ -175,7 +176,7 @@ router.get('/:userName/:recipeName', checkAuth, (req, res, next) => {
 
 //post request for creating a new recipe
 router.post('/', checkAuth, upload.single('image'), (req, res, next) => {
-    User.findById(req.userData.userId).then(user => {
+    User.findById(req.userId).then(user => {
         if (!user) {
             console.log("failed")
             // return res.status(401).json({
@@ -185,7 +186,7 @@ router.post('/', checkAuth, upload.single('image'), (req, res, next) => {
             console.log(user)
             const recipe = new Recipe({
                 _id: new mongoose.Types.ObjectId(),
-                author: user.author,
+                author: user.username,
                 title: req.body.title,
                 description: req.body.description,
                 ingredients: req.body.ingredients,
@@ -234,7 +235,7 @@ router.patch('/:recipeName', checkAuth, upload.single('image'), (req, res, next)
 
 //delete a recipe by user
 router.delete('/:recipeName', checkAuth, (req, res, next) => {
-    Recipe.remove({ title: req.params.recipeName, author: req.userData.userId })
+    Recipe.remove({ title: req.params.recipeName, author: req.userId })
         .exec()
         .then(result => {
             console.log(result)

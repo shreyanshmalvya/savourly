@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = require('../model/user');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const checkAuth = require('../middleware/check-auth');
 
 //signup route
 router.post('/signup', (req, res, next) => {
@@ -24,6 +25,7 @@ router.post('/signup', (req, res, next) => {
                 } else {
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
+                        username: req.body.username,
                         email: req.body.email,
                         password: hash
                     });
@@ -76,19 +78,21 @@ router.post('/login', (req, res, next) => {
             res.status(401).json({
                 message: 'Auth failed'
             });
-        }).catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
         });
     });
 });
 
 
 //deleting a user
-router.delete("/:userID", (req, res, next) => {
-    User.find({ _id: req.params.userID }).remove().exec()
+router.delete("/", checkAuth, (req, res, next) => {
+    console.log("in delete user")
+    console.log(req.userId);
+    User.find({ _id: req.userId }).remove().exec()
         .then(result => {
             //user deleted successfully
             console.log(result);
