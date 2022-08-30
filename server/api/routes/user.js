@@ -8,6 +8,13 @@ const checkAuth = require('../middleware/check-auth');
 
 //signup route
 router.post('/signup', (req, res, next) => {
+    //usning regex to check if the email is valid
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!emailRegex.test(req.body.email)) {
+        return res.status(400).json({
+            message: 'Invalid email address'
+        });
+    }
     //check if user already exists
     User.find({ email: req.body.data.email }).exec().then(user => {
         if (user.length >= 1) {
