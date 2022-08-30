@@ -34,7 +34,7 @@ function Auth() {
         }
     }
     const signupHandler = async () => {
-        const response = await axios.post(`http://localhost:5000/user/signup`, {
+        const response = await axios.post(`https://savourly-v1.herokuapp.com/user/signup`, {
             data: {
                 username: username,
                 email: email,
