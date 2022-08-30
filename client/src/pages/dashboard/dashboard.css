@@ -7,6 +7,33 @@
   font-size: 2rem;
   padding: 100px 20px 40px 20px;
 }
+.dashboardWrapper .loginButton {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  background: #000;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 10px 10px;
+  margin: 10px;
+  font-family: "cotta";
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.dashboardWrapper .loginButton:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+}
+.dashboardWrapper .loginButton a {
+  text-decoration: none;
+}
 
 .creator {
   display: flex;
