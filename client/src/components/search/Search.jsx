@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-// import { useDispatch } from 'react-redux'
-// import {Link} from 'react-router-dom'
-// import { incrementByAmount } from '../../redux/title'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { incrementByAmount } from '../../redux/title'
 import axios from 'axios';
 import './search.css'
 
@@ -20,12 +20,12 @@ const Search = () => {
         setSearch(query);
     };
 
-    // //intializing redux state
-    // const dispatch = useDispatch()
-    // //fuction to pass title into store
-    // const getTitle = (reqTitle) => {
-    //     dispatch(incrementByAmount(reqTitle));
-    // }
+    //intializing redux state
+    const dispatch = useDispatch()
+    //fuction to pass title into store
+    const getTitle = (reqTitle) => {
+        dispatch(incrementByAmount(reqTitle));
+    }
 
     //using useEffect to fetch data from the api
     useEffect(() => {
@@ -66,7 +66,7 @@ const Search = () => {
                 </div>
             </div >
             <div className="topRecipes">
-                Top Recipes 
+                Top Recipes
             </div>
             <div className="searchResults">
                 {!searchToggle ?
@@ -84,10 +84,11 @@ const Search = () => {
                                         <div className="searchResultDescription" >
                                             {recipe.description}
                                         </div>
-                                        <div className="readOption">
-                                            Read
-                                            {/* <Link to= '/read'>Read</Link> */}
-                                        </div>
+                                        <Link to='/read'>
+                                            <div className="readOption" onClick={() => getTitle(recipe._id)} >
+                                                Read
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             );
@@ -96,7 +97,7 @@ const Search = () => {
                     :
                     <>
                         {searchResults?.map((result, key) => {
-                             console.log("at search",result)
+                            console.log("at search", result)
                             return (
                                 //return data in leaflet from
                                 <div className="resultWrapper" key={key}>
@@ -110,10 +111,11 @@ const Search = () => {
                                         <div className="searchResultDescription" >
                                             {result.description}
                                         </div>
-                                        <div className="readOption">
-                                            Read
-                                            {/* <Link to= '/read'>Read</Link> */}
-                                        </div>
+                                        <Link to='/read'>
+                                            <div className="readOption" onClick={() => getTitle(result._id)} >
+                                                Read
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             );
