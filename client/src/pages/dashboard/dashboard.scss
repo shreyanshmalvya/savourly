@@ -1,0 +1,39 @@
+.dashboardWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'cotta';
+    font-size: 2rem;
+    padding: 100px 20px 40px 20px;
+}
+.creator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5rem;
+    padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboardWrapper{
+        padding: 70px 20px 40px 20px;
+    }
+    .creator{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dashboardWrapper{
+        padding: 50px 20px 10px 20px;
+    }
+    .creator{
+        font-size: 1rem;
+    }
+}
+    
+
+    
