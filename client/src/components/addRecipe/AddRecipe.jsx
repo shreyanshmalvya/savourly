@@ -24,7 +24,7 @@ function AddRecipe() {
         formData.append('image', image);
         formData.append('author', username);
         //axios post request
-        const response = await axios.post(`http://localhost:5000/recipe/`, formData, {
+        const response = await axios.post(`https://git.heroku.com/savourly-v1.git/recipe/`, formData, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

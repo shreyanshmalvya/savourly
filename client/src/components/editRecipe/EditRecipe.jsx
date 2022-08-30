@@ -17,7 +17,7 @@ function EditRecipe() {
     //using useEffect to get the recipe data from the server as from autofill
     useEffect(() => {
         const getFormData = async () => {
-            const response = await axios.get(`http://localhost:5000/recipe/read/${id}`);
+            const response = await axios.get(`https://git.heroku.com/savourly-v1.git/recipe/read/${id}`);
             const result = await response.data.recipe[0];
             return result;
         }
@@ -34,7 +34,7 @@ function EditRecipe() {
 
     //post data 
     const patchData = async () => {
-        const response = await axios.patch(`http://localhost:5000/recipe/update/${id}`, {
+        const response = await axios.patch(`https://git.heroku.com/savourly-v1.git/recipe/update/${id}`, {
             title: title,
             description: description,
             ingredients: ingredients,
