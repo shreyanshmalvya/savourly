@@ -17,7 +17,7 @@ function Dash() {
 
     const deleteRecipe = async(recipename) => {
         console.log(recipename)
-        const response = await axios.delete(`https://git.heroku.com/savourly-v1.git/recipe/${recipename}`, {
+        const response = await axios.delete(`https://savourly-v1.herokuapp.com/recipe/${recipename}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
@@ -37,7 +37,7 @@ function Dash() {
     //using use effect to get all recipes by the user from the database
     useEffect(() => {
         const allRecipes = async () => {
-            const response = await axios.get(`https://git.heroku.com/savourly-v1.git/recipe/user/${username}`, {
+            const response = await axios.get(`https://savourly-v1.herokuapp.com/recipe/user/${username}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }

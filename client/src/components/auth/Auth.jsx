@@ -15,7 +15,7 @@ function Auth() {
     const dispatch = useDispatch();
     
     const loginHandler = async () => {
-        const response = await axios.post(`https://git.heroku.com/savourly-v1.git/user/login`, {
+        const response = await axios.post(`https://savourly-v1.herokuapp.com/user/login`, {
             data: {
                 email: email,
                 password: password

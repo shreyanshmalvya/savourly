@@ -20,7 +20,7 @@ function Read() {
 
     useEffect(() => {
         const result = async () => {
-            const response = await axios.get(`https://git.heroku.com/savourly-v1.git/recipe/read/${id}`);
+            const response = await axios.get(`https://savourly-v1.herokuapp.com/recipe/read/${id}`);
             const result = await response.data.recipe[0];
             return result
         }

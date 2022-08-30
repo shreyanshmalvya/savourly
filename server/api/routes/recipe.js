@@ -48,7 +48,7 @@ router.get("/", (req, res, next) => {
             description: doc.description,
             ingredients: doc.ingredients,
             directions: doc.directions,
-            image: "https://git.heroku.com/savourly-v1.git" + doc.image,
+            image: "https://savourly-v1.herokuapp.com/" + doc.image,
           };
         }),
       });
@@ -81,7 +81,7 @@ router.get("/:recipeName", (req, res, next) => {
               description: doc.description,
               ingredients: doc.ingredients,
               directions: doc.directions,
-              image: "https://git.heroku.com/savourly-v1.git" + doc.image,
+              image: "https://savourly-v1.herokuapp.com/" + doc.image,
             };
           }),
         });
@@ -103,7 +103,7 @@ router.get("/:recipeName", (req, res, next) => {
                     description: doc.description,
                     ingredients: doc.ingredients,
                     directions: doc.directions,
-                    image: "https://git.heroku.com/savourly-v1.git" + doc.image,
+                    image: "https://savourly-v1.herokuapp.com/" + doc.image,
                   };
                 }),
               });
@@ -140,7 +140,7 @@ router.get("/read/:recipeId", (req, res, next) => {
               description: doc.description,
               ingredients: doc.ingredients,
               directions: doc.directions,
-              image: "https://git.heroku.com/savourly-v1.git" + doc.image,
+              image: "https://savourly-v1.herokuapp.com/" + doc.image,
             },
           ],
         });
@@ -177,7 +177,7 @@ router.get("/user/:userName", checkAuth, (req, res, next) => {
               description: doc.description,
               ingredients: doc.ingredients,
               directions: doc.directions,
-              image: "https://git.heroku.com/savourly-v1.git" + doc.image,
+              image: "https://savourly-v1.herokuapp.com/" + doc.image,
             };
           }),
         });
