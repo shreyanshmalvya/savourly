@@ -1,0 +1,154 @@
+@font-face {
+    font-family: "typo";
+    src: url("../../assets/fonts/typo.otf") format("opentype");
+}
+
+.recipeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    .recipe {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        .recipeTitle {
+            font-size: 20px;
+            font-family: "typo";
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        .topWrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            .recipeDescription {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                flex: 0.8;
+                font-size: 1.5rem;
+                color: #000;
+                font-family: "cotta";
+                font-weight: bold;
+                max-width: 500px;
+                padding: 10px 20px 0 20px;
+                justify-content: space-between;
+                text-align: left;
+                text-transform: capitalize;
+                .recipeIngredients {
+                    height: 100%;
+                    flex-direction: column;
+                    flex: 0.5;
+                    font-size: 1.2rem;
+                    font-family: "cotta";
+                    padding-top: 20px;
+                    color: #000;
+                    margin-bottom: 10px;
+                    text-transform: capitalize;
+                    justify-content: left;
+                    align-items: left;
+                }
+            }
+            .recipeImage {
+                display: flex;
+                flex: 0.4;
+                img {
+                    max-height: 400px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .recipeInstructions {
+            font-size: 1.5rem;
+            padding-top: 30px;
+            color: #000;
+            margin-top: 10px;
+            font-family: "typo";
+            white-space: pre-line;
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .recipeWrapper {
+        .recipe {
+            width: 100%;
+            .recipeDescription {
+                flex: 1;
+                max-width: 100%;
+                .recipeIngredients {
+                    flex: 1;
+                    max-width: 100%;
+                }
+            }
+            .recipeImage {
+                flex: 1;
+                img{
+                    max-height: 400px;
+                    max-width: 400px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .recipeWrapper {
+        .recipe {
+            width: 100%;
+            .recipeDescription {
+                flex: 1;
+                max-width: 100%;
+                padding: 10px 10px 0 10px !important;
+                .recipeIngredients {
+                    flex: 1;
+                    max-width: 100%;
+                }
+            }
+            .recipeImage {
+                flex: 1;
+                max-width: 100%;
+                img{
+                    max-height: 300px !important;
+                    max-width: 300px !important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .recipeWrapper {
+        .recipe {
+            width: 100%;
+            .recipeDescription {
+                flex: 1;
+                max-width: 100%;
+                padding: 0 0 0 0 !important;
+                .recipeIngredients {
+                    flex: 1;
+                    max-width: 100%;
+                }
+            }
+            .recipeImage {
+                flex: 1;
+                max-width: 100%;
+            }
+        }
+    }
+}
