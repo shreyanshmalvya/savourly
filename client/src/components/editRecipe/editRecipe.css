@@ -1,0 +1,149 @@
+.editWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.editWrapper .editForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding-inline: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-family: "typo";
+  padding: 10px;
+}
+.editWrapper .editForm input {
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  color: #000;
+  padding: 0.5rem;
+}
+.editWrapper .editForm input:hover {
+  cursor: pointer;
+}
+.editWrapper .editForm input:nth-child(2) {
+  height: 400px;
+}
+.editWrapper .editForm input:nth-child(4) {
+  height: 400px;
+}
+.editWrapper .editForm textarea {
+  margin: 10px;
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  color: #000;
+  padding: 0.5rem;
+}
+.editWrapper .editForm textarea:hover {
+  cursor: pointer;
+}
+.editWrapper .editForm img {
+  margin: 10px;
+  max-width: 700px;
+}
+.editWrapper .submitButton {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  transition: all 0.3s ease-in-out;
+}
+.editWrapper .submitButton:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.685);
+}
+
+@media screen and (max-width: 768px) {
+  .editWrapper .editForm input {
+    max-width: 550px !important;
+  }
+  .editWrapper .editForm input:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm input:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea {
+    max-width: 550px !important;
+  }
+  .editWrapper .editForm textarea:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm img {
+    max-width: 550px !important;
+  }
+}
+@media screen and (max-width: 630px) {
+  .editWrapper .editForm input {
+    max-width: 450px !important;
+  }
+  .editWrapper .editForm input:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm input:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea {
+    max-width: 450px !important;
+  }
+  .editWrapper .editForm textarea:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm img {
+    max-width: 450px !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .editWrapper .editForm input {
+    max-width: 300px !important;
+  }
+  .editWrapper .editForm input:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm input:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea {
+    max-width: 300px !important;
+  }
+  .editWrapper .editForm textarea:nth-child(2) {
+    height: 200px;
+  }
+  .editWrapper .editForm textarea:nth-child(4) {
+    height: 200px;
+  }
+  .editWrapper .editForm img {
+    max-width: 300px !important;
+  }
+}/*# sourceMappingURL=editRecipe.css.map */

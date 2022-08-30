@@ -4,6 +4,7 @@ import './auth.css'
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { incrementByAmount } from '../../redux/userData';
+import { setLogin } from '../../redux/login';
 
 function Auth() {
     const [username, setUsername] = React.useState('');
@@ -14,7 +15,7 @@ function Auth() {
     const dispatch = useDispatch();
     
     const loginHandler = async () => {
-        const response = await axios.post(`http://localhost:5000/user/login`, {
+        const response = await axios.post(`https://savourly-v1.herokuapp.com/user/login`, {
             data: {
                 email: email,
                 password: password
@@ -24,6 +25,7 @@ function Auth() {
         if (result.message === "Auth successful") {
             const token = await response.data.token;
             localStorage.setItem('token', token);
+            dispatch(setLogin(true))
             dispatch(incrementByAmount({username: result.username}));
             setDashboardNav(true);
         } else {
@@ -32,7 +34,7 @@ function Auth() {
         }
     }
     const signupHandler = async () => {
-        const response = await axios.post(`http://localhost:5000/user/signup`, {
+        const response = await axios.post(`https://savourly-v1.herokuapp.com/user/signup`, {
             data: {
                 username: username,
                 email: email,

@@ -32,7 +32,7 @@ const Search = () => {
         //fetching results from the api
         if (search) {
             const result = async () => {
-                const response = await axios.get(`http://localhost:5000/recipe/${search}`);
+                const response = await axios.get(`https://savourly-v1.herokuapp.com/recipe/${search}`);
                 const result = await response.data.recipe;
                 setSearchResults(result);
             }
@@ -44,7 +44,7 @@ const Search = () => {
     //using use effect to get list of top recipes from the api
     useEffect(() => {
         const result = async () => {
-            const response = await axios.get(`http://localhost:5000/recipe/`);
+            const response = await axios.get(`https://savourly-v1.herokuapp.com/recipe/`);
             const result = await response.data.recipes;
             return result
         }

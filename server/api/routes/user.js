@@ -8,25 +8,33 @@ const checkAuth = require('../middleware/check-auth');
 
 //signup route
 router.post('/signup', (req, res, next) => {
+    //usning regex to check if the email is valid
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!emailRegex.test(req.body.email)) {
+        return res.status(400).json({
+            message: 'Invalid email address'
+        });
+    }
     //check if user already exists
-    User.find({ email: req.body.email }).exec().then(user => {
+    User.find({ email: req.body.data.email }).exec().then(user => {
         if (user.length >= 1) {
-            return res.status(409).json({
+            return res.status(200).json({
                 message: 'Email already exists'
             });
         } else {
             //user does not exist, create new user, 
             //using hashing algorithm to hash the password before saving it in the database
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
+            bcrypt.hash(req.body.data.password, 10, (err, hash) => {
                 if (err) {
+                    console.log("error in signing up", err)
                     res.status(500).json({
                         error: err
                     });
                 } else {
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
-                        username: req.body.username,
-                        email: req.body.email,
+                        username: req.body.data.username,
+                        email: req.body.data.email,
                         password: hash
                     });
                     user.save()
@@ -50,15 +58,17 @@ router.post('/signup', (req, res, next) => {
 
 //login route
 router.post('/login', (req, res, next) => {
-    User.find({ email: req.body.email }).exec().then(user => {
+    console.log(req.body)
+    User.find({ email: req.body.data.email }).exec().then(user => {
         if (user.length < 1) {
-            return res.status(401).json({
+            console.log('User not found');
+            return res.status(200).json({
                 message: 'Auth failed'
             });
         }
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        bcrypt.compare(req.body.data.password, user[0].password, (err, result) => {
             if (err) {
-                return res.status(401).json({
+                return res.status(200).json({
                     message: 'Auth failed'
                 });
             }
@@ -72,10 +82,11 @@ router.post('/login', (req, res, next) => {
                 });
                 return res.status(200).json({
                     message: 'Auth successful',
+                    username: user[0].username,
                     token: token
                 });
             }
-            res.status(401).json({
+            res.status(200).json({
                 message: 'Auth failed'
             });
         });
