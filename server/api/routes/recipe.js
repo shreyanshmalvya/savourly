@@ -222,39 +222,23 @@ router.get("/user/:userName/:recipeName", checkAuth, (req, res, next) => {
 
 //post request for creating a new recipe
 router.post("/", checkAuth, upload.single("image"), (req, res, next) => {
-  User.findById(req.userId)
-    .then((user) => {
-      if (!user) {
-        console.log("failed");
-        // return res.status(401).json({
-        //     message: 'Auth failed'
-        // });
-      } else {
-        console.log(user);
-        const recipe = new Recipe({
-          _id: new mongoose.Types.ObjectId(),
-          author: user.username,
-          title: req.body.title,
-          description: req.body.description,
-          ingredients: req.body.ingredients,
-          directions: req.body.directions,
-          image: req.file.path,
-        });
-        recipe
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.status(201).json({
-              message: "Recipe created",
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            res.status(500).json({
-              error: err,
-            });
-          });
-      }
+  const recipe = new Recipe({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+    directions: req.body.directions,
+    image: req.file.path,
+  });
+  recipe
+    .save()
+    .then((result) => {
+      console.log(result);
+      res.status(201).json({
+        message: "Recipe created",
+        recipe: result,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -266,19 +250,21 @@ router.post("/", checkAuth, upload.single("image"), (req, res, next) => {
 
 //patch request for updating a recipe
 router.patch(
-  "/:recipeName",
+  "/update/:recipeId",
   checkAuth,
   upload.single("image"),
   (req, res, next) => {
+    console.log("here in patch");
+    console.log(req.body);
+    console.log(req.params.recipeId);
     Recipe.updateOne(
-      { title: req.params.recipeName },
+      { _id: req.params.recipeId },
       {
         $set: {
           title: req.body.title,
           description: req.body.description,
           ingredients: req.body.ingredients,
           directions: req.body.directions,
-          image: req.file.path,
         },
       }
     )
